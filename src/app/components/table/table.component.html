@@ -1,23 +1,28 @@
-<span class="alert alert-primary" *ngIf="data.length == 0">
-  Não exitem dados a serem carregados
-</span>
-<table class="table table-striped">
-  <thead>
-    <th *ngFor="let column of columns">{{column.label}}</th>
-  </thead>
-  <tBody>
-    <tr *ngFor="let data of data" (click)="selectRow(data)">
-      <td *ngFor="let column of columns">
+<div class="row">
+  <span class="alert alert-primary" *ngIf="data.length == 0">
+    Não exitem dados a serem carregados
+  </span>
+</div>
+<div class="row">
+  <table class="table table-striped">
+    <thead>
+      <th *ngFor="let column of columns">{{column.label}}</th>
+    </thead>
+    <tBody>
+      <tr *ngFor="let data of data" (click)="selectRow(data)">
+        <td *ngFor="let column of columns">
 
-        <span *ngIf="column.property == 'data';else conteudo">
-          {{data[column.property] | date: 'short'}}
-        </span>
+          <span *ngIf="column.property == 'data';else conteudo">
+            {{data[column.property] | date: 'short'}}
+          </span>
 
-        <ng-template #conteudo>
-          {{data[column.property]}}
-        </ng-template>
+          <ng-template #conteudo>
+            {{data[column.property]}}
+          </ng-template>
 
-      </td>
-    </tr>
-  </tBody>
-  </table>
+        </td>
+      </tr>
+    </tBody>
+    </table>
+</div>
+

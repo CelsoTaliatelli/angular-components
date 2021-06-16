@@ -21,9 +21,9 @@ export class AppComponent implements OnInit{
     ];
 
     this.data = [
-      {codigo: '1',nome:'Celso',cargo:'Engenheiro de Software',email:'celso@mail.com',data: new Date(),status:'OK'},
-      {codigo: '2',nome:'Celso',cargo:'Engenheiro de Software',email:'celso@mail.com',data: new Date(),status:'OK'},
-      {codigo: '3',nome:'Celso',cargo:'Engenheiro de Software',email:'celso@mail.com',data: new Date(),status:'OK'}
+      {codigo: '1',nome:'Celso Henrique',cargo:'FullStack Developer',email:'celso@mail.com',data: new Date(),status:'OK'},
+      {codigo: '2',nome:'Sara',cargo:'UX Designer',email:'sara@mail.com',data: new Date(),status:'OK'},
+      {codigo: '3',nome:'João',cargo:'Arquiteto de Software',email:'joao@mail.com',data: new Date(),status:'OK'}
     ]
 
     console.log(this.columns);
