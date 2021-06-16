@@ -1,0 +1,10 @@
+<table>
+  <thead>
+    <th *ngFor="let column of columns">{{column.label}}</th>
+  </thead>
+  <tBody>
+    <tr *ngFor="let data of data">
+      <td *ngFor="let column of columns">{{data[column.property]}}</td>
+    </tr>
+  </tBody>
+  </table>
