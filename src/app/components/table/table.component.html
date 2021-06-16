@@ -1,4 +1,7 @@
-<table>
+<span class="alert alert-primary" *ngIf="data.length == 0">
+  Não exitem dados a serem carregados
+</span>
+<table class="table table-striped">
   <thead>
     <th *ngFor="let column of columns">{{column.label}}</th>
   </thead>
