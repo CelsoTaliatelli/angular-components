@@ -1,1 +1,7 @@
-<app-table [t-columns]="columns" [t-data]="data" (getRow)="selectedRow($event)"></app-table>
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+        <app-table [t-columns]="columns" [t-data]="data" (getRow)="selectedRow($event)"></app-table>
+    </div>
+  </div>
+</div>
