@@ -11,7 +11,6 @@ export class TableComponent implements OnInit {
 
 
   private _columns!: Array<any>;
-  private _data!: Array<any>;
 
   @Input('t-columns') set columns(value : Array<any>){
 
