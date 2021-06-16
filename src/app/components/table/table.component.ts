@@ -1,11 +1,11 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-table',
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss']
 })
-export class TableComponent implements OnInit {
+export class TableComponent {
 
   constructor() { }
 
@@ -26,8 +26,10 @@ export class TableComponent implements OnInit {
   }
 
   @Input('t-data') data!: Array<any>;
+  @Output() getRow = new EventEmitter();
 
-  ngOnInit(): void {
+  selectRow(row: Array<any>){
+    this.getRow.emit(row);
   }
 
 }

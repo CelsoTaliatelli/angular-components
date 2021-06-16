@@ -1,2 +1,1 @@
-
-<app-table [t-columns]="columns" [t-data]="data"></app-table>
+<app-table [t-columns]="columns" [t-data]="data" (getRow)="selectedRow($event)"></app-table>

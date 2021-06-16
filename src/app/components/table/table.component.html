@@ -6,7 +6,7 @@
     <th *ngFor="let column of columns">{{column.label}}</th>
   </thead>
   <tBody>
-    <tr *ngFor="let data of data">
+    <tr *ngFor="let data of data" (click)="selectRow(data)">
       <td *ngFor="let column of columns">
 
         <span *ngIf="column.property == 'data';else conteudo">

@@ -10,7 +10,6 @@ export class AppComponent implements OnInit{
   columns!: any[];
   data!: any[];
 
-
   ngOnInit(): void {
     this.columns = [
       {property:'codigo',label: 'Código',width: 120 },
@@ -31,4 +30,8 @@ export class AppComponent implements OnInit{
     console.log(this.data);
 
   }
+
+  selectedRow(value:any){
+      console.log('clicou',value);
+    }
 }
