@@ -4,7 +4,17 @@
   </thead>
   <tBody>
     <tr *ngFor="let data of data">
-      <td *ngFor="let column of columns">{{data[column.property]}}</td>
+      <td *ngFor="let column of columns">
+
+        <span *ngIf="column.property == 'data';else conteudo">
+          {{data[column.property] | date: 'short'}}
+        </span>
+
+        <ng-template #conteudo>
+          {{data[column.property]}}
+        </ng-template>
+
+      </td>
     </tr>
   </tBody>
   </table>
