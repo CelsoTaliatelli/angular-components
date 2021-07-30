@@ -1,0 +1,17 @@
+import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class AppServiceService {
+
+
+  private url = 'https://api.instantwebtools.net/v1/passenger?page=0&size=10';
+
+constructor(private http: HttpClient) {}
+  public getAll(page: number): Observable<any[]>{
+    return this.http.get<any[]>(`https://api.instantwebtools.net/v1/passenger?page=${page}&size=10`)
+  }
+}

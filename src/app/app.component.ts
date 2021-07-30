@@ -1,4 +1,7 @@
+import { AppServiceService } from './app-service.service';
 import { Component, OnInit } from '@angular/core';
+import { TableColumn } from './components/table/interfaces/table-column';
+
 
 @Component({
   selector: 'app-root',
@@ -7,31 +10,35 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit{
 
-  columns!: any[];
-  data!: any[];
+  columns!: Array<TableColumn>;
+  data: any[] = [];
+  page:number = 0;
+
+  constructor(private http: AppServiceService){}
 
   ngOnInit(): void {
     this.columns = [
-      {property:'codigo',label: 'Código',width: 120 },
-      {property: 'nome',label: 'Nome', width: '200px'},
-      {property:'cargo',label: 'Cargo', width: 150 },
-      {property:'email',label: 'E-mail', width: 100},
-      {property:'status',label: 'Status', width: 80},
-      {property:'data',label: 'Data', width: 80},
+      {property:'_id',label:'#ID',type:'string'},
+      {property:'name',label: 'Nome',type:'string'},
+      {property:'trips',label:'Viagens',type:'icon',icons:
+        {
+          icon: 'fa fa-camera',
+          value: ''
+        }
+      }
     ];
-
-    this.data = [
-      {codigo: '1',nome:'Celso Henrique',cargo:'FullStack Developer',email:'celso@mail.com',data: new Date(),status:'OK'},
-      {codigo: '2',nome:'Sara',cargo:'UX Designer',email:'sara@mail.com',data: new Date(),status:'OK'},
-      {codigo: '3',nome:'João',cargo:'Arquiteto de Software',email:'joao@mail.com',data: new Date(),status:'OK'}
-    ]
-
-    console.log(this.columns);
-    console.log(this.data);
-
+    this.http.getAll(0).subscribe((data: any) => {
+      this.data = data.data;
+    });
   }
-
   selectedRow(value:any){
       console.log('clicou',value);
-    }
+  }
+
+  changePage(page: number): void{
+      this.page++;
+      this.http.getAll(this.page).subscribe((data: any) => {
+        this.data = data.data;
+      });
+  }
 }
