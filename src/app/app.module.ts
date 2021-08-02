@@ -1,3 +1,4 @@
+import { TableCustomRowDirective } from './components/table/table-custom-row.directive';
 import { TableColumnIconComponent } from './components/table/table-column-icon/table-column-icon.component';
 import { AppServiceService } from './app-service.service';
 import { HttpClientModule } from '@angular/common/http';
@@ -14,7 +15,8 @@ import { TableComponent } from './components/table/table.component';
     AppComponent,
     TableComponent,
     TableColumnIconComponent,
-    TableSortDirective
+    TableSortDirective,
+    TableCustomRowDirective
   ],
   imports: [
     BrowserModule,
