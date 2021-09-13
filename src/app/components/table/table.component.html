@@ -10,7 +10,7 @@
       [tableSort]="data">{{column.label}}</th>
     </thead>
     <tBody>
-      <tr *ngFor="let data of data" (click)="selectRow(data)" class="linha">
+      <!--<tr *ngFor="let data of data" (click)="selectRow(data)" class="linha">
         <td *ngFor="let column of columns">
           <div [ngSwitch]="column.type">
             <table-column-icon
@@ -25,7 +25,7 @@
           </div>
 
         </td>
-      </tr>
+      </tr>-->
     </tBody>
   </table>
 </div>
