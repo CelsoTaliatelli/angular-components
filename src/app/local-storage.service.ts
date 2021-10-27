@@ -4,11 +4,11 @@ export class LocalStorageService{
 
   items:Array<Plano> = [];
 
-  clear(){
+  clear(): void{
     this.items = [];
   }
 
-  addItem(item: Plano){
+  addItem(item: Plano) : void {
     this.items = this.getItems();
     let foundItem = this.items.find((i) => i.id === item.id);
     if(!foundItem){
@@ -17,21 +17,20 @@ export class LocalStorageService{
       this.clear();
     }else{
       this.removeItem(item);
-      console.log(this.items);
       this.items.push(item);
       localStorage.setItem('items',JSON.stringify(this.items));
     }
   }
 
-  removeItem(item:Plano){
+  removeItem(item:Plano): void {
     this.items.splice(this.items.findIndex(i => i.id === item.id),1);
   }
 
-  mostrarItems(){
+  mostrarItems() : void {
     console.log("items",localStorage.getItem('items'));
   }
 
-  getItems(){
+  getItems() : Array<Plano>{
     return JSON.parse(localStorage.getItem('items') || '[]');
   }
 
