@@ -1,1 +1,11 @@
-<app-table [t-columns]="colunas" [t-data]="dados"></app-table>
+
+<div *ngIf="dados$ | async as dados">
+  <div class="row">
+    <app-table
+      [t-columns]="colunas"
+      [t-data]="dados"
+      [trStyle]="{dados:dados,property:'country',style:'color',color:'red'}">
+    </app-table>
+  </div>
+</div>
+

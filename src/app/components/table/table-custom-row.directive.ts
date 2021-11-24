@@ -1,21 +1,29 @@
-import {AfterViewChecked, Directive, ElementRef,Input,Renderer2} from "@angular/core";
+import {AfterContentInit, AfterViewChecked, AfterViewInit, Directive, ElementRef,Input,OnChanges,OnInit,Renderer2, SimpleChanges} from "@angular/core";
 
 @Directive({
-  selector:'[tableRow]'
+  selector:'[trStyle]'
 })
-export class TableCustomRowDirective implements AfterViewChecked{
+export class TableCustomRowDirective implements AfterViewInit{
 
-  @Input('tableRow') data!:string;
+  @Input('trStyle') data!:DadosStyle;
   constructor(private elementRef: ElementRef,private render: Renderer2){}
-
-  ngAfterViewChecked(): void {
-    let tr = this.elementRef.nativeElement.querySelector("tr");
-    if(tr !== null){
-      this.render.setStyle(tr,'cursor',this.data);
+  ngAfterViewInit(): void {
+    if(this.data.dados){
+      for(let i = 0;i <= this.data.dados.length;i++){
+        if(this.data.dados[i] && this.data.dados[i][this.data.property] == "Quatar"){
+          this.render.setStyle(this.elementRef.nativeElement.querySelectorAll("tr")[i],this.data.style,this.data.color);
+        }
+      }
     }
   }
 
+}
 
 
 
+export interface DadosStyle{
+    dados:Array<any>,
+    property:string,
+    style:string,
+    color:string
 }
