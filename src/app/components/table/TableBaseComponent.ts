@@ -8,6 +8,7 @@ export abstract class TableBaseComponent{
   @Input('t-columns') columns!: Array<TableColumn>;
   @Input('t-data') data!: Array<any>;
   @Input('color') color!:any;
+  @Input('t-class') cssClass!:string;
   protected icons!: TableColumnIcon;
   //@Output() getRow = new EventEmitter();
 

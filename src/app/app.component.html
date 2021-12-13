@@ -2,6 +2,7 @@
 <div *ngIf="dados$ | async as dados">
   <div class="row">
     <app-table
+      [t-class]="'table1'"
       [t-columns]="colunas"
       [t-data]="dados"
       [trStyle]="{dados:dados,property:'country',style:'color',color:'red'}">
