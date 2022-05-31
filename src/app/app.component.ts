@@ -14,14 +14,18 @@ export class AppComponent implements OnInit{
   constructor(private serviceApp:AppServiceService){}
 
   service = new LocalStorageService();
-  dados$!:Observable<any[]>;
+  dados!:any[];
   colunas!:Array<TableColumn>;
 
   ngOnInit(): void {
     this.colunas = [
       {property:'id',type:'string',label:'ID'},
-      {property:'country',type:'string',label:'Country'}
+      {property:'country',type:'string',label:'Country'},
+      {property:'city',type:'string',label:'City'}
     ];
-    this.dados$ = this.serviceApp.getAll();
+    this.dados = [
+      {id:'5456465465',country:'Brazil',city:'Itapira'},
+      {id:'5456465498',country:'PERU',city:'-'}
+    ]
   }
 }

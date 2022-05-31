@@ -1,31 +1,52 @@
-<div class="row">
-  <span class="alert alert-primary" *ngIf="data.length === 0">
-    Não exitem dados a serem carregados
-  </span>
-</div>
-<div class="row">
-  <table [class]="cssClass">
-    <thead>
-      <th *ngFor="let column of columns"
-      [tableSort]="data">{{column.label}}</th>
-    </thead>
-    <tBody>
-      <tr *ngFor="let data of data" class="linha">
-        <td *ngFor="let column of columns">
-          <div [ngSwitch]="column.type">
-            <table-column-icon
-              *ngSwitchCase="'icon'"
-              [t-data]="data[column.property]"
+<div class="container" [ngClass]="fixedColumn ? 'fixed-column':''">
+  <div class="row">
+    <span class="alert alert-primary" *ngIf="data.length === 0">
+      Não exitem dados a serem carregados
+    </span>
+  </div>
+  <div class="row">
+    <table>
+      <thead>
+        <th *ngFor="let column of columns" [tableSort]="data">{{column.label}}</th>
+      </thead>
+      <tBody *ngFor="let data of data; let index=index">
+        <tr class="linha">
+          <td *ngFor="let column of columns;let i = index">
+            (click)="toggleDetail(data)"
+            [class.headCol]="fixedColumn && i===0"
             >
-            </table-column-icon>
-            <span *ngSwitchDefault>
-              {{data[column.property]}}
-            </span>
-          </div>
+            <div [ngSwitch]="column.type">
+              <table-column-icon
+                *ngSwitchCase="'icon'"
+                [t-data]="data[column.property]"
+              >
+              </table-column-icon>
+              <span *ngSwitchDefault>
+                {{data[column.property]}}
+              </span>
+              <ng-template *ngIf="hasRowTemplate && i==0"
+              [ngTemplateOutlet]="poTableColumnDetail"
+              [ngTemplateOutletContext]="{row:data,rowIndex:index}">
+            </ng-template>
+            </div>
+          </td>
+        </tr>
+        <tr *ngIf="hasRowTemplate() && data.$showDetail && isShowRowTemplate(data,index)">
+            <ng-template
+              [ngTemplateOutlet]="tableRowTemplate.templateRef"
+              [ngTemplateOutletContext]="{ $implicit: data, rowIndex: index }">
+            </ng-template>
+        </tr>
 
-        </td>
-      </tr>
-    </tBody>
-  </table>
+      </tBody>
+    </table>
+  </div>
+
 </div>
 
+
+<ng-template #poTableColumnDetail let-row="row" let-rowIndex="rowIndex">
+  <span style="cursor: pointer;" *ngIf="hasRowTemplate() && isShowRowTemplate(row,rowIndex)">
+    <i [class]="row.$showDetail ?  'fa fa-arrow-down' : 'fa fa-arrow-up'"></i>
+  </span>
+</ng-template>

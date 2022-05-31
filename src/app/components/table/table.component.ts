@@ -1,5 +1,3 @@
-import { TableColumnIcon } from './table-column-icon/table-column-icon';
-import { TableColumn } from './interfaces/table-column';
 import { Component, Input, OnInit, Output,EventEmitter } from '@angular/core';
 import { TableBaseComponent } from './TableBaseComponent';
 
@@ -8,6 +6,9 @@ import { TableBaseComponent } from './TableBaseComponent';
   templateUrl: './table.component.html',
   styleUrls: ['./table.component.scss','./table1.scss']
 })
-export class TableComponent extends TableBaseComponent{
+export class TableComponent extends TableBaseComponent implements OnInit{
+  ngOnInit(): void {
+    this.data.forEach((item) => item.$showDetail = false);
+  }
 
 }
