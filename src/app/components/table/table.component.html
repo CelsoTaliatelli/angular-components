@@ -5,15 +5,14 @@
     </span>
   </div>
   <div class="row">
-    <table>
+    <table [class]="cssClass">
       <thead>
         <th *ngFor="let column of columns" [tableSort]="data">{{column.label}}</th>
       </thead>
       <tBody *ngFor="let data of data; let index=index">
         <tr class="linha">
-          <td *ngFor="let column of columns;let i = index">
+          <td *ngFor="let column of columns;let i = index"
             (click)="toggleDetail(data)"
-            [class.headCol]="fixedColumn && i===0"
             >
             <div [ngSwitch]="column.type">
               <table-column-icon
